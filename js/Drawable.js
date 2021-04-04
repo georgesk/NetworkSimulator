@@ -90,7 +90,7 @@ var Drawable = function(c_owner)
         var parts = owner.getStrInfo().split("\n");
         for (var i = 0; i < parts.length; i++) 
         {
-            ctx.fillText(parts[i], 0, image.height + pos);
+            ctx.fillText(parts[i], 0, image.height + 5 + pos);
             pos += 8;
         }
         if (DEBUG)
