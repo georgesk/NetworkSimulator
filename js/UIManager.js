@@ -1,4 +1,4 @@
- /*
+/*
  * This file is part of the Education Network Simulator project and covered
  * by GPLv3 license. See full terms in the LICENSE file at the root folder
  * or at http://www.gnu.org/licenses/gpl-3.0.html.
@@ -151,8 +151,9 @@ var UIManager = function()
 
     function moreInfoForObject(){
 	var was_still = new Date().getTime() - lastTimeStill;
-	if (was_still > 2000 && ! moreInfoVisible){
+	if (was_still > 2000 && ! moreInfoVisible && state == STATE_NEUTRAL){
 	    // the mouse was kept stationary, more than 2s
+	    // and the state is neutral
 	    showInfo(lastHoveredObject);
 	}
     }
@@ -164,12 +165,23 @@ var UIManager = function()
 	    if (messageUI) messageUI.dialog("close");
 	} else {
 	    moreInfoVisible = true;
-	    console.log(object.getStrInfo());
-	    $( "#message" ).html(object.getStrInfo());
+	    var properties = object.getStrInfo().split("\n");
+	    var plist = "<ul><li>" + properties.join("</li><li>") + "</li></ul>";
+	    $( "#message" ).html(plist);
 	    messageUI = $( "#message" ).dialog({
 		hide: {effect:"fadeOut", duration: 100},
 		show: {effect:"fadeIn", duration: 1000},
-	    }); 
+		title: properties[0],
+		width: 500,
+	    });
+	    console.log(object.getStrInfo());
+	    /*
+	    messageUI.dialog("option", { position:{
+		my: 'left', 
+		at: 'right', 
+		of: event
+            }  });
+	    */
 	    messageUI.dialog().show();
 	}
     }
