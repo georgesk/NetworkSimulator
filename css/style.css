@@ -1,0 +1,29 @@
+.menu {
+    width:200px;
+    background-color:#EEEEEE;
+    border:3px solid white;
+    font-size:0.8em;
+    padding:0px 10px 0px;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width:2048px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+fieldset {
+    font-size: 0.8em;
+}
