@@ -82,30 +82,26 @@ var Drawable = function(c_owner)
         notifyObservers();
     };
     
-    function drawInfo(ctx) 
+    function drawInfo(d) 
     {
-        var pos = 8;
-        ctx.font = '8pt';
-        ctx.fillStyle = "black";
         var parts = owner.getStrInfo().split("\n");
         for (var i = 0; i < parts.length; i++) 
         {
-            ctx.fillText(parts[i], 0, image.height + 5 + pos);
-            pos += 10;
-        }
-        if (DEBUG)
-        {
-            ctx.fillText("X: " + X + " - Y: " + Y, 0, image.height + pos);
+	    var p = document.createElement("p");
+	    p.innerHTML = parts[i];
+            div.appendChild(p);
         }
     }
     
-    this.draw = function(ctx) 
+    this.draw = function() 
     {
-        ctx.save();
-        ctx.translate(X, Y);
-        ctx.drawImage(image, 0, 0);
-        drawInfo(ctx);
-        ctx.restore();
+	var d = document.createElement("div");
+	d.setAttribute("style", "position: fixed; top: "+ Y +"px; left: "+ X +"px;");
+	var i = document.createElement("img");
+	i.setAttribute("src", image.src);
+	d.appendChild(i);
+	drawInfo(d);
+	document.body.appendChild(d);
     };
     
     this.getOwner = function() 
