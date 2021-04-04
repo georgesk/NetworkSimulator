@@ -91,7 +91,7 @@ var Drawable = function(c_owner)
         for (var i = 0; i < parts.length; i++) 
         {
             ctx.fillText(parts[i], 0, image.height + 5 + pos);
-            pos += 8;
+            pos += 10;
         }
         if (DEBUG)
         {
