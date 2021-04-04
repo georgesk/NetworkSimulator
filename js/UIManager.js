@@ -144,6 +144,37 @@ var UIManager = function()
     var elemRect = null;
     var move_X = 0;
     var move_Y = 0;
+    var lastTimeStill = new Date().getTime(); // last time mouse has moved
+    var lastHoveredObject = null;             // over this object
+    var moreInfoVisible = true;              // more info if mouse keeps still
+    var messageUI = null;
+
+    function moreInfoForObject(){
+	var was_still = new Date().getTime() - lastTimeStill;
+	if (was_still > 2000 && ! moreInfoVisible){
+	    // the mouse was kept stationary, more than 2s
+	    showInfo(lastHoveredObject);
+	}
+    }
+
+    function showInfo(object, show){
+	//console.log("DEBUG", object, show);
+	if (show === false){
+	    moreInfoVisible = false;
+	    if (messageUI) messageUI.dialog("close");
+	} else {
+	    moreInfoVisible = true;
+	    console.log(object.getStrInfo());
+	    $( "#message" ).html(object.getStrInfo());
+	    messageUI = $( "#message" ).dialog({
+		hide: {effect:"fadeOut", duration: 100},
+		show: {effect:"fadeIn", duration: 1000},
+	    }); 
+	    messageUI.dialog().show();
+	}
+    }
+    
+    window.setInterval(moreInfoForObject, 500);
 
     function switchMainMenu(params)
     {
@@ -234,6 +265,8 @@ var UIManager = function()
         var canvas_y = (event.clientY - bbox.top) * (canvas.height / bbox.height);
         move_X = canvas_x;
         move_Y = canvas_y;
+	lastTimeStill = new Date().getTime(); // update last time mouse has moved
+	showInfo(null, false)
 
         dispatchEvent(canvas_x, canvas_y, ACTION_MOUSE_MOVE);
     }
@@ -355,7 +388,13 @@ var UIManager = function()
                             }
                         }
                         break;
-                }
+		    case ACTION_MOUSE_MOVE:
+		    var hovered = detectClick(move_X, move_Y);
+		    if (hovered != null && hovered.getObject().getOwner){
+			lastHoveredObject = hovered.getObject().getOwner();
+		    }
+                    break;
+		}
                 break;
             case STATE_MAIN_MENU_VISIBLE:
                 switch (action)
