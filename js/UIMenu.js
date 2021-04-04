@@ -81,7 +81,8 @@ var UIMenu = function(description, X,Y, fixed)
     {
         var div = document.createElement("div");
         div.setAttribute("id",id);
-        div.setAttribute("style","width:200px;background-color:#EEEEEE;border:3px solid white;position:"+ (fixed?"fixed":"absolute") +";top:"+Y+"px;left:"+X+"px;font-size:0.8em;padding:0px 10px 0px;");
+        div.setAttribute("class","menu");
+        div.setAttribute("style","position:"+(fixed?"fixed":"absolute") +";top:"+Y+"px;left:"+X+"px;");
 
         var innerHtml = "<span style='font-weight:bold'>" + _(description) + "</span><hr/>";
 
