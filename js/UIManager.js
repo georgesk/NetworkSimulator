@@ -151,7 +151,9 @@ var UIManager = function()
 
     function moreInfoForObject(){
 	var was_still = new Date().getTime() - lastTimeStill;
-	if (was_still > 2000 && ! moreInfoVisible && state == STATE_NEUTRAL){
+	var state_ok = state == STATE_NEUTRAL ||
+	    state == STATE_ELEMENT_SELECTED_MOUSE_UP;
+	if (was_still > 2000 && ! moreInfoVisible && state_ok){
 	    // the mouse was kept stationary, more than 2s
 	    // and the state is neutral
 	    showInfo(lastHoveredObject);
@@ -401,6 +403,8 @@ var UIManager = function()
 		    var hovered = detectClick(move_X, move_Y);
 		    if (hovered != null && hovered.getObject().getOwner){
 			lastHoveredObject = hovered.getObject().getOwner();
+		    } else {
+			lastHoveredObject = null;
 		    }
                     break;
 		}
