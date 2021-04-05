@@ -146,7 +146,7 @@ var UIManager = function()
     var move_Y = 0;
     var lastTimeStill = new Date().getTime(); // last time mouse has moved
     var lastHoveredObject = null;             // over this object
-    var moreInfoVisible = true;              // more info if mouse keeps still
+    var moreInfoVisible = true;               // more info if mouse keeps still
     var messageUI = null;
 
     function moreInfoForObject(){
@@ -158,18 +158,17 @@ var UIManager = function()
 	}
     }
 
-    function showInfo(object, show){
-	//console.log("DEBUG", object, show);
-	if (show === false){
+    function showInfo(object, show = true){
+	if (! show){
 	    moreInfoVisible = false;
 	    if (messageUI) messageUI.dialog("close");
 	} else {
+	    if (object == null) return;
 	    moreInfoVisible = true;
 	    var properties = object.getStrInfo().split("\n");
 	    var plist = "<ul><li>" + properties.join("</li><li>") + "</li></ul>";
 	    $( "#message" ).html(plist);
 	    var mypos = 'left+' + parseInt(move_X) + ' top+' + parseInt(move_Y);
-	    console.log(mypos, object.getStrInfo());
 	    messageUI = $( "#message" ).dialog({
 		hide: {effect:"fadeOut", duration: 100},
 		show: {effect:"fadeIn", duration: 1000},
