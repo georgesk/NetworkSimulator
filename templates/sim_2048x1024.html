@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  	<meta charset="utf-8"> 
+    <title>{{title}}</title>
+    <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/jquery-ui/themes/base/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="dist/networksim.min.js"></script>
+    <script type="text/javascript">
+      function init() 
+      {
+	  var loader = new ImageLoader(
+	      ["img/64/switch.png", 
+               "img/64/router2.png", 
+               "img/64/computer.png", 
+               "img/64/server_web.png", 
+               "img/64/server_dns.png", 
+               "img/64/server_dhcp.png", 
+               "img/64/envelope-DHCP.png", 
+               "img/64/envelope-DNS.png", 
+               "img/64/envelope-HTTP.png",
+               "img/64/envelope-ICMP.png"], 
+	      simulator
+	  );
+	  loader.load();
+      }
+    </script>
+  </head>
+  <body onload="init();" >
+    <div id="simcontainer" style="float:right;width:2048px; height:1024px;">
+      <canvas id="simcanvas" style="width:2048px; height:1024px;" />
+    </div>
+    <div id="message" style="font-size: 12px;">
+    </div>
+  </body>
+</html>
