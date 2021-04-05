@@ -20,6 +20,23 @@ targets = {
     "simulatorteacher.html" : PageGenerator(
         "sim_2048x1024.html",{"title": 'TEACHER SIMULATOR'}
     ),
+    "simulator01.html" : PageGenerator(
+        "sim_2048x1024.html",
+        {
+            "title": '01 SIMULATOR',
+            "initialdata": "NetworkSimulator.initialdata = exampledata;",
+            "examples": ["data01"]
+        }
+    ),
+    "simulator01_fr.html" : PageGenerator(
+        "sim_2048x1024.html",
+        {
+            "title": '01 SIMULATEUR',
+            "initialdata": "NetworkSimulator.initialdata = exampledata;",
+            "examples": ["data01_fr"],
+            "localize": "uitranslation.selectLocale('fr_FR');",
+        }
+    ),
 }
 
 for t, gen in targets.items():

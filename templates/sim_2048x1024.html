@@ -2,8 +2,11 @@
 
 <html>
   <head>
-  	<meta charset="utf-8"> 
+    <meta charset="utf-8"> 
     <title>{{title}}</title>
+    {% for e in examples %}
+    <script type="text/javascript" src="examples/{{e}}.json"></script>
+    {% endfor %}
     <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="js/jquery-ui/themes/base/all.min.css" />
@@ -12,6 +15,8 @@
     <script type="text/javascript">
       function init() 
       {
+	  {{initialdata}}
+	  {{localize}}
 	  var loader = new ImageLoader(
 	      ["img/64/switch.png", 
                "img/64/router2.png", 

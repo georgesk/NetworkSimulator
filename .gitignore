@@ -3,4 +3,6 @@ debian/
 html_files_stamp
 simulator.html
 simulatorteacher.html
+simulator01.html
+simulator01_fr.html
 dist/*.js
