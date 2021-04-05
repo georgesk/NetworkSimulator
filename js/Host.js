@@ -569,13 +569,13 @@ var Host = function(type, ports)
 		    if (dnsclientapp){
 			var localtable = dnsclientapp.getLocalTable();
 			if (localtable){
-			    result += "\n<strong>DNS cache:</strong> ";
+			    result += "\n<strong>DNS cache:</strong><dl>";
 			    Object.entries(localtable).forEach(
-				pair => result += pair[0]+" : "+pair[1]+", "
+				pair => result += "<dt>"+pair[0]+"</dt><dd>"+pair[1]+"</dd>"
 			    );
+			    result += "</dl>";
 			}
 		    }
-		    console.log("dnsclientapp", dnsclientapp, dnsclientapp.getLocalTable());
 		}
             }
         }
