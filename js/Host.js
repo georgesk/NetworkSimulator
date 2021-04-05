@@ -533,8 +533,20 @@ var Host = function(type, ports)
 
         return result;
     };
-    
-    this.getStrInfo = function() 
+
+    /**
+     * function getStrInfo
+     *
+     * build a string with information about the host.
+     *
+     * @param option a dictionary of options, 
+     *               defaults to {verbose: false, format: "plain"}
+     *               if option.verbose is false, the information is short
+     *               if option.format is "html", returns a <UL> HTML list
+     *
+     * @return an information string
+     **/
+    this.getStrInfo = function(option = {verbose: false, format: "plain"}) 
     {
         result = name;
         
@@ -546,7 +558,7 @@ var Host = function(type, ports)
                 result += this.getConnectorDesc(i);
                 result += ": ";
                 result += (connectable.getIPInfo(i).getIPv4() === null)?"-":connectable.getIPInfo(i).getIPv4();
-                if (NetworkSimulator.verbose == true)
+                if (NetworkSimulator.verbose == true || option.verbose)
                 {
                     result += "\n";
                     result += this.getVerboseStr(connectable,i);
@@ -565,7 +577,11 @@ var Host = function(type, ports)
                 result += this.getVerboseStr(connectable,0);
             }
         }
-        
+
+	if (option.format == "html"){
+	    result =  "<ul><li>" +
+		result.split("\n").join("</li><li>") + "</li></ul>";
+	}
         return result;
     };
     

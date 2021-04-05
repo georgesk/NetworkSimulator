@@ -165,14 +165,13 @@ var UIManager = function()
 	} else {
 	    if (object == null) return;
 	    moreInfoVisible = true;
-	    var properties = object.getStrInfo().split("\n");
-	    var plist = "<ul><li>" + properties.join("</li><li>") + "</li></ul>";
-	    $( "#message" ).html(plist);
+	    $( "#message" ).html(object.getStrInfo({
+		verbose: true, format: "html"}));
 	    var mypos = 'left+' + parseInt(move_X) + ' top+' + parseInt(move_Y);
 	    messageUI = $( "#message" ).dialog({
 		hide: {effect:"fadeOut", duration: 100},
 		show: {effect:"fadeIn", duration: 1000},
-		title: properties[0],
+		title: object.getName(),
 		width: 500,
 		position: {
 		    my: mypos, 
