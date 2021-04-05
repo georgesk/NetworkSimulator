@@ -169,7 +169,7 @@ var UIManager = function()
 	    moreInfoVisible = true;
 	    $( "#message" ).html(object.getStrInfo({
 		verbose: true, format: "html"}));
-	    var mypos = 'left+' + parseInt(move_X) + ' top+' + parseInt(move_Y);
+	    var mypos = 'center+' + parseInt(move_X) + ' center+' + parseInt(move_Y);
 	    messageUI = $( "#message" ).dialog({
 		hide: {effect:"fadeOut", duration: 100},
 		show: {effect:"fadeIn", duration: 1000},
@@ -178,7 +178,7 @@ var UIManager = function()
 		position: {
 		    my: mypos, 
 		    at: 'left top',
-		    of: 'body'
+		    of: window
 		}
 	    });
 	    messageUI.dialog().show();
