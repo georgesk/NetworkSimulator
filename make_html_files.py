@@ -37,6 +37,15 @@ targets = {
             "localize": "uitranslation.selectLocale('fr_FR');",
         }
     ),
+    "reseau_jean_bart.html" : PageGenerator(
+        "sim_2048x1024.html",
+        {
+            "title": 'SIMULATEUR de RÉSEAU JEAN BART',
+            "initialdata": "NetworkSimulator.initialdata = exampledata;",
+            "examples": ["jeanbart"],
+            "localize": "uitranslation.selectLocale('fr_FR');",
+        }
+    ),
 }
 
 for t, gen in targets.items():
