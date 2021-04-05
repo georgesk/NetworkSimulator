@@ -554,7 +554,7 @@ var Host = function(type, ports)
         {
             for (var i = 0; i < connectable.getConnectorNumber();i++)
             {
-                result += "\n";
+		result += "\n";
                 result += this.getConnectorDesc(i);
                 result += ": ";
                 result += (connectable.getIPInfo(i).getIPv4() === null)?"-":connectable.getIPInfo(i).getIPv4();
@@ -563,6 +563,20 @@ var Host = function(type, ports)
                     result += "\n";
                     result += this.getVerboseStr(connectable,i);
                 }
+		if (option.format == "html"){
+		    /* add also dnsclientapp information */
+		    var dnsclientapp = connectable.getOwner().getApp("DNSClient");
+		    if (dnsclientapp){
+			var localtable = dnsclientapp.getLocalTable();
+			if (localtable){
+			    result += "\n<strong>DNS cache:</strong> ";
+			    Object.entries(localtable).forEach(
+				pair => result += pair[0]+" : "+pair[1]+", "
+			    );
+			}
+		    }
+		    console.log("dnsclientapp", dnsclientapp, dnsclientapp.getLocalTable());
+		}
             }
         }
         else if (connectable.getIpMode() === IPMODE_SHARED)
@@ -571,11 +585,16 @@ var Host = function(type, ports)
             result += _("IP: ");
             result += ": ";
             result += (connectable.getIPInfo(0).getIPv4() === null)?"-":connectable.getIPInfo(0).getIPv4();
-            if (NetworkSimulator.verbose == true)
+            if (NetworkSimulator.verbose == true || option.verbose)
             {
                 result += "\n";
                 result += this.getVerboseStr(connectable,0);
             }
+	    if (option.format == "html"){
+		/* add also dnsclientapp information */
+		var dnsclientapp = owner.getApp("DNSClient");
+		console.log("dnsclientapp", dnsclientapp)
+	    }
         }
 
 	if (option.format == "html"){

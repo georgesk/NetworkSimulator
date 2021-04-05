@@ -135,6 +135,10 @@ var DNSClient = function(ifacepos)
         return result;
     };
 
+    this.getLocalTable = function(){
+	return localtable;
+    };
+
     this.getAppController = function()
     {
         var id = network.getPosForElement(owner);
