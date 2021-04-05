@@ -168,20 +168,19 @@ var UIManager = function()
 	    var properties = object.getStrInfo().split("\n");
 	    var plist = "<ul><li>" + properties.join("</li><li>") + "</li></ul>";
 	    $( "#message" ).html(plist);
+	    var mypos = 'left+' + parseInt(move_X) + ' top+' + parseInt(move_Y);
+	    console.log(mypos, object.getStrInfo());
 	    messageUI = $( "#message" ).dialog({
 		hide: {effect:"fadeOut", duration: 100},
 		show: {effect:"fadeIn", duration: 1000},
 		title: properties[0],
 		width: 500,
+		position: {
+		    my: mypos, 
+		    at: 'left top',
+		    of: 'body'
+		}
 	    });
-	    console.log(object.getStrInfo());
-	    /*
-	    messageUI.dialog("option", { position:{
-		my: 'left', 
-		at: 'right', 
-		of: event
-            }  });
-	    */
 	    messageUI.dialog().show();
 	}
     }
