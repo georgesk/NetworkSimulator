@@ -7,9 +7,7 @@
     {% for e in examples %}
     <script type="text/javascript" src="examples/{{e}}.json"></script>
     {% endfor %}
-    <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="js/jquery-ui/themes/base/all.min.css" />
+    {{jquery_section}}
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script type="text/javascript" src="dist/networksim.min.js"></script>
     <script type="text/javascript">

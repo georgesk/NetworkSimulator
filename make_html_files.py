@@ -48,8 +48,23 @@ targets = {
     ),
 }
 
+jquery_section = {
+    "debian": """<script type="text/javascript" src="/javascript/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascript/jquery-ui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/javascript/jquery-ui/themes/humanity/all.min.css" />
+""",
+    "default": """<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/humanity/jquery-ui.css" />
+"""
+}
+
+install = "default"
+if "INSTALL_MODE" in os.environ:
+    install = os.environ.get("INSTALL_MODE")
 for t, gen in targets.items():
     with open(t,"w") as outfile, open(gen.outfname()) as tmpl_file:
-        page = Environment().from_string(tmpl_file.read()).render(**gen.params)
+        page = Environment().from_string(tmpl_file.read()).render(
+            jquery_section = jquery_section[install], **gen.params)
         outfile.write(page)
     
