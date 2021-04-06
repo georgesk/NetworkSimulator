@@ -51,7 +51,7 @@ targets = {
 jquery_section = {
     "debian": """<script type="text/javascript" src="/javascript/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/javascript/jquery-ui/jquery-ui.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/javascript/jquery-ui/themes/humanity/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="/javascript/jquery-ui-themes/humanity/jquery-ui.min.css" />
 """,
     "default": """<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
