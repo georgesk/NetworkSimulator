@@ -151,8 +151,7 @@ var UIManager = function()
 
     function moreInfoForObject(){
 	var was_still = new Date().getTime() - lastTimeStill;
-	var state_ok = state == STATE_NEUTRAL ||
-	    state == STATE_ELEMENT_SELECTED_MOUSE_UP;
+	var state_ok = state == STATE_NEUTRAL;
 	if (was_still > 2000 && ! moreInfoVisible && state_ok){
 	    // the mouse was kept stationary, more than 2s
 	    // and the state is neutral
